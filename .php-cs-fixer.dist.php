@@ -9,7 +9,7 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
         '@PSR12' => true,
-        'single_line_empty_body' => true,
+        'single_line_empty_body' => false,
         'global_namespace_import' => true,
         'yoda_style' => false,
         'class_attributes_separation' => false,

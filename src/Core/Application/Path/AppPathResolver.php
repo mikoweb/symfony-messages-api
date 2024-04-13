@@ -10,7 +10,8 @@ final readonly class AppPathResolver
 {
     public function __construct(
         private ParameterBagInterface $parameterBag
-    ) {}
+    ) {
+    }
 
     public function getAppPath(?string $path = null): string
     {

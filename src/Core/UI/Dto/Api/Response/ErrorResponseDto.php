@@ -6,7 +6,8 @@ class ErrorResponseDto implements ErrorResponseInterface
 {
     public function __construct(
         private string $error
-    ) {}
+    ) {
+    }
 
     public function getError(): string
     {
