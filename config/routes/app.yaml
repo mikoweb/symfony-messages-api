@@ -1,4 +1,0 @@
-app_default_index:
-    path: /
-    controller: App\Core\UI\Controller\DefaultController::index
-    methods: [GET]
