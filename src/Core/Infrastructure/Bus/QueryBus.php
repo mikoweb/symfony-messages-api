@@ -5,7 +5,6 @@ namespace App\Core\Infrastructure\Bus;
 use App\Core\Infrastructure\Interaction\Query\QueryInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
-use Symfony\Component\Messenger\Stamp\StampInterface;
 
 readonly class QueryBus implements QueryBusInterface
 {
@@ -14,12 +13,9 @@ readonly class QueryBus implements QueryBusInterface
     ) {
     }
 
-    /**
-     * @param StampInterface[] $stamps
-     */
-    public function dispatch(QueryInterface $query, array $stamps = []): mixed
+    public function dispatch(QueryInterface $query, ?StampCollection $stamps = null): mixed
     {
-        $envelope = $this->queryBus->dispatch($query, $stamps);
+        $envelope = $this->queryBus->dispatch($query, is_null($stamps) ? [] : $stamps->toArray());
 
         return $envelope->last(HandledStamp::class)?->getResult();
     }
