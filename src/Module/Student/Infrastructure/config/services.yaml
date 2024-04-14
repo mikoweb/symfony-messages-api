@@ -1,1 +1,4 @@
+imports:
+    - { resource: 'doctrine_mongodb.yaml' }
+
 services:

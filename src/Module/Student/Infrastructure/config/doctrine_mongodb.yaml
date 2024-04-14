@@ -1,0 +1,7 @@
+doctrine_mongodb:
+    document_managers:
+        default:
+            mappings:
+                Student:
+                    dir: '%kernel.project_dir%/src/Module/Student/Domain/Document'
+                    prefix: 'App\Module\Student\Domain\Document'
