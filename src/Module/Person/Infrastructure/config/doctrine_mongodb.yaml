@@ -1,0 +1,7 @@
+doctrine_mongodb:
+    document_managers:
+        default:
+            mappings:
+                Person:
+                    dir: '%kernel.project_dir%/src/Module/Person/Domain/Document'
+                    prefix: 'App\Module\Person\Domain\Document'
