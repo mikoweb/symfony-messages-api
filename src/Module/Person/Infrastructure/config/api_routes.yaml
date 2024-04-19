@@ -1,0 +1,3 @@
+api_person:
+    resource: api_routes/person.yaml
+    prefix: /person

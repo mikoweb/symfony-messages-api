@@ -1,0 +1,24 @@
+api_person_paginated_list:
+    path: /
+    controller: App\Module\Person\UI\Controller\Person\PaginatedListController::getPaginatedList
+    methods: [GET]
+
+api_person_get:
+    path: /{id}
+    controller: App\Module\Person\UI\Controller\Person\GetPersonController::getPerson
+    methods: [GET]
+
+api_person_create:
+    path: /
+    controller: App\Module\Person\UI\Controller\Person\CreateController::create
+    methods: [POST]
+
+api_person_update:
+    path: /{id}
+    controller: App\Module\Person\UI\Controller\Person\UpdateController::update
+    methods: [PUT]
+
+api_person_remove:
+    path: /{id}
+    controller: App\Module\Person\UI\Controller\Person\RemoveController::remove
+    methods: [DELETE]

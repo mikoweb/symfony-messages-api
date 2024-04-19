@@ -2,13 +2,17 @@
 
 namespace App\Module\Person\Domain\Document;
 
+use App\Core\Infrastructure\Doctrine\Entity\Interfaces\TimestampableInterface;
+use App\Core\Infrastructure\Doctrine\Entity\Traits\TimestampableTrait;
 use App\Module\Person\Infrastructure\Repository\PersonRepository;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Uid\Uuid;
 
 #[MongoDB\Document(repositoryClass: PersonRepository::class)]
-class Person
+class Person implements TimestampableInterface
 {
+    use TimestampableTrait;
+
     #[MongoDB\Id(type: 'string', strategy: 'NONE')]
     private string $id;
 
@@ -19,7 +23,7 @@ class Person
     private string $lastName;
 
     #[MongoDB\Field(name: 'album_number', type: 'string')]
-    #[MongoDB\UniqueIndex]
+    #[MongoDB\UniqueIndex(partialFilterExpression: ['album_number' => ['$type' => 'string']])]
     private ?string $albumNumber = null;
 
     #[MongoDB\Field(name: 'position', type: 'string')]
