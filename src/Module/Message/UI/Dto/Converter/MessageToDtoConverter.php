@@ -2,10 +2,12 @@
 
 namespace App\Module\Message\UI\Dto\Converter;
 
+use App\Core\Application\Collection\ByIdTypedMap;
 use App\Core\Infrastructure\Bus\SharedQueryBusInterface;
 use App\Module\Message\Domain\Document\Message;
 use App\Module\Message\UI\Dto\MessageDto;
 use App\Shared\Application\Interaction\SharedQuery\FindPersonSharedQuery;
+use App\Shared\UI\Dto\Person\PersonDto;
 use DateTimeImmutable;
 
 readonly class MessageToDtoConverter
@@ -15,10 +17,16 @@ readonly class MessageToDtoConverter
     ) {
     }
 
-    public function convertToDto(Message $message): MessageDto
+    /**
+     * @param ByIdTypedMap<string, PersonDto>|null $personMap
+     */
+    public function convertToDto(Message $message, ?ByIdTypedMap $personMap = null): MessageDto
     {
-        $sender = $this->sharedQueryBus->dispatch(new FindPersonSharedQuery($message->getSenderId()));
-        $recipient = $this->sharedQueryBus->dispatch(new FindPersonSharedQuery($message->getRecipientId()));
+        $sender = $personMap?->get($message->getSenderId())
+            ?? $this->sharedQueryBus->dispatch(new FindPersonSharedQuery($message->getSenderId()));
+
+        $recipient = $personMap?->get($message->getRecipientId())
+            ?? $this->sharedQueryBus->dispatch(new FindPersonSharedQuery($message->getRecipientId()));
 
         return new MessageDto(
             id: $message->getId(),

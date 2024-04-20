@@ -27,12 +27,17 @@ readonly class PersonFilterBuilder
         $this->filters = func_get_args();
     }
 
-    public function build(Builder $queryBuilder, PersonFilterDto $filterDto): void
+    public function build(Builder $queryBuilder, PersonFilterDto $filterDto): bool
     {
+        $applied = false;
+
         foreach ($this->filters as $filter) {
             if ($filter->supports($filterDto)) {
                 $filter->apply($queryBuilder, $filterDto);
+                $applied = true;
             }
         }
+
+        return $applied;
     }
 }

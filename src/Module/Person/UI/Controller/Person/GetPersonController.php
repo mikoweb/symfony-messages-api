@@ -4,7 +4,7 @@ namespace App\Module\Person\UI\Controller\Person;
 
 use App\Core\UI\Api\Controller\AbstractRestController;
 use App\Module\Person\Domain\Document\Person;
-use App\Shared\UI\Dto\Person\Converter\PersonToDtoConverter;
+use App\Module\Person\UI\Dto\Converter\PersonToDtoConverter;
 use App\Shared\UI\Dto\Person\PersonDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;

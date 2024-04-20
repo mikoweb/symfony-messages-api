@@ -4,8 +4,8 @@ namespace App\Module\Person\Application\Interaction\SharedQuery\Handler;
 
 use App\Core\Application\Exception\NotFoundException;
 use App\Module\Person\Infrastructure\Repository\PersonRepository;
+use App\Module\Person\UI\Dto\Converter\PersonToDtoConverter;
 use App\Shared\Application\Interaction\SharedQuery\FindPersonSharedQuery;
-use App\Shared\UI\Dto\Person\Converter\PersonToDtoConverter;
 use App\Shared\UI\Dto\Person\PersonDto;
 use Doctrine\ODM\MongoDB\LockException;
 use Doctrine\ODM\MongoDB\Mapping\MappingException;

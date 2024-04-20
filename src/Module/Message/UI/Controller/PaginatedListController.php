@@ -8,10 +8,12 @@ use App\Core\UI\Api\Controller\AbstractRestController;
 use App\Core\UI\Dto\Api\Response\ApiDoc\PaginationApiModel;
 use App\Module\Message\Application\Interaction\Query\AskForMessagePaginatedList\AskForMessagePaginatedListQuery;
 use App\Module\Message\UI\Dto\MessageDto;
+use App\Module\Message\UI\Dto\MessageQueryDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 
 class PaginatedListController extends AbstractRestController
 {
@@ -31,10 +33,14 @@ class PaginatedListController extends AbstractRestController
             anyOf: [new OA\Schema(ref: new Model(type: PaginationApiModel::class))]
         )
     )]
-    public function getPaginatedList(Request $request, QueryBusInterface $queryBus): Response
-    {
+    public function getPaginatedList(
+        Request $request,
+        QueryBusInterface $queryBus,
+        #[MapQueryString] ?MessageQueryDto $queryDto,
+    ): Response {
         return $this->json($queryBus->dispatch(new AskForMessagePaginatedListQuery(
             PaginationRequest::createFromRequest($request),
+            $queryDto ?? new MessageQueryDto(),
         )));
     }
 }

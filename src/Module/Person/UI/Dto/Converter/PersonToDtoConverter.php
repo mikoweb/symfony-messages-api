@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\UI\Dto\Person\Converter;
+namespace App\Module\Person\UI\Dto\Converter;
 
 use App\Module\Person\Domain\Document\Person;
 use App\Shared\UI\Dto\Person\PersonDto;
