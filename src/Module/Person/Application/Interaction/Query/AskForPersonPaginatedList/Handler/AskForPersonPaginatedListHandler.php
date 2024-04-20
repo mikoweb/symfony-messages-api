@@ -8,7 +8,7 @@ use App\Core\Domain\Pagination\Pagination;
 use App\Module\Person\Application\Interaction\Query\AskForPersonPaginatedList\AskForPersonPaginatedListQuery;
 use App\Module\Person\Domain\Document\Person;
 use App\Module\Person\Infrastructure\Repository\PersonRepository;
-use App\Module\Person\UI\Dto\Converter\PersonToDtoConverter;
+use App\Shared\UI\Dto\Person\Converter\PersonToDtoConverter;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 

@@ -2,6 +2,7 @@
 
 namespace App\Module\Message\Infrastructure\Persistence\Message;
 
+use App\Core\Application\Exception\NotFoundException;
 use App\Module\Message\Domain\Document\Message;
 use App\Module\Message\Infrastructure\Persistence\Message\Converter\MessageCreateDtoToDocumentConverter;
 use App\Module\Message\Infrastructure\Persistence\Message\Converter\MessageUpdateDtoToDocumentConverter;
@@ -11,7 +12,6 @@ use App\Module\Message\UI\Dto\MessageUpdateDto;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\LockException;
 use Doctrine\ODM\MongoDB\Mapping\MappingException;
-use UnexpectedValueException;
 
 readonly class MessagePersistence
 {
@@ -46,13 +46,14 @@ readonly class MessagePersistence
     /**
      * @throws MappingException
      * @throws LockException
+     * @throws NotFoundException
      */
     public function remove(string $messageId): void
     {
         $message = $this->repository->find($messageId);
 
         if (is_null($message)) {
-            throw new UnexpectedValueException(sprintf('Message with id "%s" does not exist.', $messageId));
+            throw new NotFoundException(sprintf('Message with id "%s" does not exist.', $messageId));
         }
 
         $this->documentManager->remove($message);

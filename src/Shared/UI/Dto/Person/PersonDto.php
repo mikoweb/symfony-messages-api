@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Module\Message\UI\Dto;
+namespace App\Shared\UI\Dto\Person;
 
 use DateTimeImmutable;
 
-readonly class MessageDto
+readonly class PersonDto
 {
     public function __construct(
         public string $id,
-        public string $senderId,
-        public string $recipientId,
-        public ?string $subject,
-        public string $content,
+        public string $firstName,
+        public string $lastName,
+        public ?string $albumNumber,
+        public ?string $position,
         public ?DateTimeImmutable $createdAt,
         public ?DateTimeImmutable $updatedAt,
     ) {

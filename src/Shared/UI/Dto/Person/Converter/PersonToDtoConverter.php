@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Module\Person\UI\Dto\Converter;
+namespace App\Shared\UI\Dto\Person\Converter;
 
 use App\Module\Person\Domain\Document\Person;
-use App\Module\Person\UI\Dto\PersonDto;
+use App\Shared\UI\Dto\Person\PersonDto;
 use DateTimeImmutable;
 
 class PersonToDtoConverter

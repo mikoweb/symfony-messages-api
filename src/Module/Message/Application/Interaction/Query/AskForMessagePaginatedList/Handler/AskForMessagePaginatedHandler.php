@@ -8,7 +8,7 @@ use App\Core\Domain\Pagination\Pagination;
 use App\Module\Message\Application\Interaction\Query\AskForMessagePaginatedList\AskForMessagePaginatedListQuery;
 use App\Module\Message\Domain\Document\Message;
 use App\Module\Message\Infrastructure\Repository\MessageRepository;
-use App\Module\Message\UI\Dto\Converter\MessageToDtoConverter;
+use App\Shared\UI\Dto\Message\Converter\MessageToDtoConverter;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
