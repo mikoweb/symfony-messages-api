@@ -1,0 +1,24 @@
+api_message_paginated_list:
+    path: /
+    controller: App\Module\Message\UI\Controller\PaginatedListController::getPaginatedList
+    methods: [GET]
+
+api_message_get:
+    path: /{id}
+    controller: App\Module\Message\UI\Controller\GetMessageController::getMessage
+    methods: [GET]
+
+api_message_create:
+    path: /
+    controller: App\Module\Message\UI\Controller\CreateController::create
+    methods: [POST]
+
+api_message_update:
+    path: /{id}
+    controller: App\Module\Message\UI\Controller\UpdateController::update
+    methods: [PUT]
+
+api_message_remove:
+    path: /{id}
+    controller: App\Module\Message\UI\Controller\RemoveController::remove
+    methods: [DELETE]

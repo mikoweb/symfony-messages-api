@@ -1,0 +1,7 @@
+doctrine_mongodb:
+    document_managers:
+        default:
+            mappings:
+                Message:
+                    dir: '%kernel.project_dir%/src/Module/Message/Domain/Document'
+                    prefix: 'App\Module\Message\Domain\Document'
