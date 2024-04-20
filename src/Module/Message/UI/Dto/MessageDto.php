@@ -2,6 +2,8 @@
 
 namespace App\Module\Message\UI\Dto;
 
+use DateTimeImmutable;
+
 readonly class MessageDto
 {
     public function __construct(
@@ -10,6 +12,8 @@ readonly class MessageDto
         public string $recipientId,
         public ?string $subject,
         public string $content,
+        public ?DateTimeImmutable $createdAt,
+        public ?DateTimeImmutable $updatedAt,
     ) {
     }
 }

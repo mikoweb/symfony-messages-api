@@ -2,7 +2,7 @@
 
 namespace App\Module\Person\UI\Dto;
 
-use DateTime;
+use DateTimeImmutable;
 
 readonly class PersonDto
 {
@@ -12,8 +12,8 @@ readonly class PersonDto
         public string $lastName,
         public ?string $albumNumber,
         public ?string $position,
-        public ?DateTime $createdAt,
-        public ?DateTime $updatedAt,
+        public ?DateTimeImmutable $createdAt,
+        public ?DateTimeImmutable $updatedAt,
     ) {
     }
 }

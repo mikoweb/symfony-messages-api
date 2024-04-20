@@ -4,6 +4,7 @@ namespace App\Module\Person\UI\Dto\Converter;
 
 use App\Module\Person\Domain\Document\Person;
 use App\Module\Person\UI\Dto\PersonDto;
+use DateTimeImmutable;
 
 class PersonToDtoConverter
 {
@@ -15,8 +16,8 @@ class PersonToDtoConverter
             lastName: $person->getLastName(),
             albumNumber: $person->getAlbumNumber(),
             position: $person->getPosition(),
-            createdAt: $person->getCreatedAt(),
-            updatedAt: $person->getUpdatedAt(),
+            createdAt: DateTimeImmutable::createFromMutable($person->getCreatedAt()),
+            updatedAt: DateTimeImmutable::createFromMutable($person->getUpdatedAt()),
         );
     }
 }
