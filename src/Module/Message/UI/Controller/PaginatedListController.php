@@ -7,7 +7,7 @@ use App\Core\Infrastructure\Bus\QueryBusInterface;
 use App\Core\UI\Api\Controller\AbstractRestController;
 use App\Core\UI\Dto\Api\Response\ApiDoc\PaginationApiModel;
 use App\Module\Message\Application\Interaction\Query\AskForMessagePaginatedList\AskForMessagePaginatedListQuery;
-use App\Shared\UI\Dto\Message\MessageDto;
+use App\Module\Message\UI\Dto\MessageDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;

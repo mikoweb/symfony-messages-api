@@ -7,11 +7,13 @@ use App\Core\Infrastructure\Bus\QueryBusInterface;
 use App\Core\UI\Api\Controller\AbstractRestController;
 use App\Core\UI\Dto\Api\Response\ApiDoc\PaginationApiModel;
 use App\Module\Person\Application\Interaction\Query\AskForPersonPaginatedList\AskForPersonPaginatedListQuery;
+use App\Module\Person\UI\Dto\PersonQueryDto;
 use App\Shared\UI\Dto\Person\PersonDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 
 class PaginatedListController extends AbstractRestController
 {
@@ -31,10 +33,14 @@ class PaginatedListController extends AbstractRestController
             anyOf: [new OA\Schema(ref: new Model(type: PaginationApiModel::class))]
         )
     )]
-    public function getPaginatedList(Request $request, QueryBusInterface $queryBus): Response
-    {
+    public function getPaginatedList(
+        Request $request,
+        QueryBusInterface $queryBus,
+        #[MapQueryString] ?PersonQueryDto $queryDto,
+    ): Response {
         return $this->json($queryBus->dispatch(new AskForPersonPaginatedListQuery(
             PaginationRequest::createFromRequest($request),
+            ($queryDto ?? new PersonQueryDto())->filter,
         )));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\UI\Dto\Message;
+namespace App\Module\Message\UI\Dto;
 
 use App\Shared\UI\Dto\Person\PersonDto;
 use DateTimeImmutable;

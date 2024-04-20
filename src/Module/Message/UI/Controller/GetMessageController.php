@@ -4,8 +4,8 @@ namespace App\Module\Message\UI\Controller;
 
 use App\Core\UI\Api\Controller\AbstractRestController;
 use App\Module\Message\Domain\Document\Message;
-use App\Shared\UI\Dto\Message\Converter\MessageToDtoConverter;
-use App\Shared\UI\Dto\Message\MessageDto;
+use App\Module\Message\UI\Dto\Converter\MessageToDtoConverter;
+use App\Module\Message\UI\Dto\MessageDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response;
