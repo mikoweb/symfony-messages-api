@@ -3,10 +3,12 @@
 namespace App\Module\Message\UI\Controller;
 
 use App\Core\Infrastructure\Bus\CommandBusInterface;
+use App\Core\Infrastructure\Bus\EventBusInterface;
 use App\Core\UI\Api\Controller\AbstractRestController;
 use App\Core\UI\Dto\Api\Response\IdDto;
 use App\Core\UI\Dto\Api\Response\SuccessResponseThinDto;
 use App\Module\Message\Application\Interaction\Command\CreateMessage\CreateMessageCommand;
+use App\Module\Message\Application\Interaction\Event\MessageCreated\MessageCreatedEvent;
 use App\Module\Message\UI\Dto\MessageCreateDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
@@ -31,8 +33,11 @@ class CreateController extends AbstractRestController
     public function create(
         #[MapRequestPayload] MessageCreateDto $dto,
         CommandBusInterface $commandBus,
+        EventBusInterface $eventBus,
     ): Response {
         $id = $commandBus->dispatch(new CreateMessageCommand($dto));
+
+        $eventBus->dispatch(new MessageCreatedEvent($id));
 
         return $this->createSuccessView('The message has been created!', new IdDto($id));
     }
