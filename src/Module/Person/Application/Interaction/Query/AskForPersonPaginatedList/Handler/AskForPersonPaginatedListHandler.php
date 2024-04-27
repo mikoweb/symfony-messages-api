@@ -29,6 +29,7 @@ class AskForPersonPaginatedListHandler extends AbstractPaginatedHandler
     public function handle(AskForPersonPaginatedListQuery $query): Pagination
     {
         $qb = $this->repository->createQueryBuilder();
+        $qb->sort('createdAt', 'desc');
 
         if (!is_null($query->filter)) {
             $this->personFilterBuilder->build($qb, $query->filter);

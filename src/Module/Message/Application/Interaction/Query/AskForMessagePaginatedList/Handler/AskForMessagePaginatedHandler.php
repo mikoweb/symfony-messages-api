@@ -41,6 +41,7 @@ readonly class AskForMessagePaginatedHandler
     public function handle(AskForMessagePaginatedListQuery $query): Pagination
     {
         $qb = $this->repository->createQueryBuilder();
+        $qb->sort('createdAt', 'desc');
         $this->messageFilterBuilder->build($qb, $query->query);
         $personMap = $this->getPersonMap(clone $qb);
         $request = $query->paginationRequest;
